@@ -3,7 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nicholasbenedict2007 | A Chess Player Like No Other</title>
+    <!-- Primary Meta Tags -->
+    <title>Nicholasbenedict2007 | Elite Chess Bullet Specialist & Player</title>
+    <meta name="title" content="Nicholasbenedict2007 | Elite Chess Bullet Specialist & Player">
+    <meta name="description" content="Official portfolio of Nicholasbenedict2007, a top-tier Chess.com Bullet specialist. Explore career stats, live victories, and professional inquiries for tournaments and coaching.">
+    <meta name="keywords" content="Nicholasbenedict2007, Chess.com, Bullet Chess, Chess Specialist, Chess Player Portfolio, Grandmaster Slayer, Online Chess Legend">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="author" content="Nicholasbenedict2007">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.chess.com/member/nicholasbenedict2007">
+    <meta property="og:title" content="Nicholasbenedict2007 | Elite Chess Bullet Specialist">
+    <meta property="og:description" content="Official portfolio of Nicholasbenedict2007. Top 0.1% Global Ranking on Chess.com with over 30,000 games played.">
+
+    <!-- Structured Data (JSON-LD) for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Nicholasbenedict2007",
+      "url": "https://www.chess.com/member/nicholasbenedict2007",
+      "jobTitle": "Chess Player",
+      "description": "Elite Bullet Chess specialist on Chess.com, known for high-velocity play and defeating titled players.",
+      "knowsAbout": ["Chess", "Bullet Chess", "Competitive Gaming", "Chess Strategy"]
+    }
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -36,6 +63,7 @@
         .hero-pattern {
             background-image: radial-gradient(circle at 2px 2px, rgba(212, 175, 55, 0.05) 1px, transparent 0);
             background-size: 40px 40px;
+            transition: background-position 0.2s ease-out;
         }
 
         .card-hover {
@@ -57,15 +85,82 @@
             background: rgba(30, 35, 41, 0.5);
             border: 1px solid rgba(212, 175, 55, 0.1);
         }
+
+        /* Infinite Scroll Animation */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            width: 100%;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .marquee-content {
+            display: inline-flex;
+            animation: scroll 30s linear infinite;
+        }
+
+        .marquee-content:hover {
+            animation-play-state: paused;
+        }
+
+        .game-link {
+            flex-shrink: 0;
+            margin: 0 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .game-link:hover {
+            background: rgba(212, 175, 55, 0.15);
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: scale(1.05);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+        }
+
+        .status-online {
+            background-color: #10b981;
+            box-shadow: 0 0 8px #10b981;
+            animation: pulse-green 2s infinite;
+        }
+
+        .status-offline {
+            background-color: #6b7280;
+            box-shadow: 0 0 4px #6b7280;
+        }
+
+        @keyframes pulse-green {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
     </style>
 </head>
-<body class="hero-pattern">
+<body class="hero-pattern" id="body-pattern">
 
     <!-- Navigation -->
     <nav class="fixed w-full z-50 nav-glass">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
-            <div class="text-xl sm:text-2xl font-bold tracking-tighter uppercase shrink-0">
-                Nicholasbenedict<span class="gold-text">2007</span>
+            <div class="flex items-center space-x-4">
+                <div class="text-xl sm:text-2xl font-bold tracking-tighter uppercase shrink-0">
+                    Nicholasbenedict<span class="gold-text">2007</span>
+                </div>
+                <div id="status-container" class="hidden lg:flex items-center bg-black/40 px-3 py-1 rounded-full border border-white/5">
+                    <span id="nav-status-dot" class="status-dot status-offline"></span>
+                    <span id="nav-status-text" class="text-[9px] uppercase tracking-widest font-bold text-gray-300">Syncing...</span>
+                </div>
             </div>
             <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest font-semibold">
                 <a href="#about" class="hover:text-[#d4af37] transition">The Player</a>
@@ -88,7 +183,7 @@
                     A Player Like <br><span class="italic underline decoration-[#d4af37] decoration-4">No Other.</span>
                 </h1>
                 <p class="text-gray-400 text-base sm:text-lg mb-8 max-w-lg mx-auto md:mx-0 leading-relaxed">
-                    Nicholasbenedict2007 is a force of nature on the digital board. A top-tier competitor on Chess.com, he brings a unique, high-velocity style forged through over thirty thousand battles against the world's elite.
+                    <strong>Nicholasbenedict2007</strong> is a force of nature on the digital board. A top-tier competitor on Chess.com, he brings a unique, high-velocity style forged through thousands of battles against the world's elite players.
                 </p>
                 <div class="flex flex-col sm:flex-row flex-wrap gap-4 justify-center md:justify-start">
                     <a href="https://www.chess.com/member/nicholasbenedict2007" target="_blank" class="bg-[#d4af37] text-black px-8 py-4 font-bold rounded-sm hover:bg-yellow-500 transition shadow-lg text-center">View Chess.com Stats</a>
@@ -96,15 +191,31 @@
                 </div>
             </div>
             <div class="order-1 md:order-2 relative flex justify-center">
-                <div class="w-64 h-64 sm:w-80 sm:h-80 md:w-full md:max-w-md aspect-square chess-gradient rounded-full flex items-center justify-center border-4 border-[#1e2329] relative overflow-hidden group">
-                    <!-- SVG Chess Piece (King/Queen hybrid) -->
+                <div class="w-64 h-64 sm:w-80 sm:h-80 md:w-full md:max-w-md aspect-square chess-gradient rounded-full flex items-center justify-center border-4 border-[#1e2229] relative overflow-hidden group">
                     <svg class="w-2/3 h-2/3 text-[#d4af37] opacity-80 group-hover:scale-110 transition duration-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M19 22H5V20H19V22ZM17 19H7V17H17V19ZM15 16H9L10 9H14L15 16ZM12 2C10.9 2 10 2.9 10 4C10 4.6 10.3 5.1 10.7 5.5L10 8H14L13.3 5.5C13.7 5.1 14 4.6 14 4C14 2.9 13.1 2 12 2Z" fill="currentColor"/>
                     </svg>
-                    <!-- Floating Badge -->
                     <div class="absolute bottom-4 right-4 sm:bottom-10 sm:right-10 bg-black p-3 sm:p-4 border border-[#d4af37] rounded-lg shadow-2xl animate-pulse text-center">
                         <div class="text-[10px] uppercase text-gray-500 font-bold">Global Percentile</div>
                         <div class="text-lg sm:text-xl font-bold gold-text">Top 0.1%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIVE GAME FEED (INFINITE SCROLLING) -->
+    <section class="py-12 px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="border-y border-gray-800 py-10">
+                <div class="text-center mb-6">
+                    <h3 class="text-xl font-bold gold-text uppercase tracking-widest mb-1">Live Victories</h3>
+                    <p class="text-[10px] text-gray-500 uppercase tracking-tighter">Rolling Archive of Recent Success</p>
+                </div>
+                <div class="marquee-container">
+                    <div id="game-feed" class="marquee-content">
+                        <!-- Items will be injected and cloned here via JS -->
+                        <div class="text-gray-600 text-xs animate-pulse mx-auto">Scanning the archives...</div>
                     </div>
                 </div>
             </div>
@@ -117,11 +228,11 @@
             <h2 class="text-center text-xl sm:text-2xl uppercase tracking-[0.4em] gold-text mb-12 sm:mb-16 font-bold">The Digital Record</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
                 <div class="text-center border-b border-gray-800 pb-8 sm:border-0 sm:pb-0">
-                    <div class="text-4xl md:text-5xl font-bold gold-text mb-2">30,000+</div>
-                    <div class="text-gray-500 uppercase tracking-widest text-xs">Games Played</div>
+                    <div id="stat-games-bullet" class="text-4xl md:text-5xl font-bold gold-text mb-2">30,000+</div>
+                    <div class="text-gray-500 uppercase tracking-widest text-xs">Total Bullet Games</div>
                 </div>
                 <div class="text-center border-b border-gray-800 pb-8 sm:border-0 sm:pb-0">
-                    <div class="text-4xl md:text-5xl font-bold gold-text mb-2">Elite</div>
+                    <div class="text-4xl md:text-5xl font-bold gold-text mb-2">ELITE</div>
                     <div class="text-gray-500 uppercase tracking-widest text-xs">Bullet Specialist</div>
                 </div>
                 <div class="text-center border-b border-gray-800 pb-8 sm:border-0 sm:pb-0">
@@ -147,14 +258,14 @@
                 </div>
                 <div class="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-8">
                     <div class="p-8 card-hover rounded-lg text-center sm:text-left">
-                        <i class="fas fa-baby text-3xl gold-text mb-6"></i>
+                        <i class="fas fa-baby text-3xl gold-text mb-6" aria-hidden="true"></i>
                         <h3 class="text-xl font-bold mb-4">Lifelong Instinct</h3>
                         <p class="text-gray-500 text-sm leading-relaxed">Playing since early childhood, Nicholasbenedict2007 has developed a level of pattern recognition that can't be taught. His moves aren't just calculated; they are felt.</p>
                     </div>
                     <div class="p-8 card-hover rounded-lg text-center sm:text-left">
-                        <i class="fas fa-stopwatch text-3xl gold-text mb-6"></i>
+                        <i class="fas fa-stopwatch text-3xl gold-text mb-6" aria-hidden="true"></i>
                         <h3 class="text-xl font-bold mb-4">Elite Bullet Specialist</h3>
-                        <p class="text-gray-500 text-sm leading-relaxed">Where others freeze under the pressure of the clock, Nicholasbenedict2007 thrives. His 30k+ game experience allows him to find winning combinations in milliseconds.</p>
+                        <p class="text-gray-500 text-sm leading-relaxed">Where others freeze under the pressure of the clock, Nicholasbenedict2007 thrives. His experience allows him to find winning combinations in milliseconds.</p>
                     </div>
                 </div>
             </div>
@@ -193,18 +304,17 @@
                 Nicholasbenedict2007 is now accepting inquiries for tournament appearances, league play, exhibition matches, and as a coach both virtual and in person. Witness the online mastery transition to the big stage.
             </p>
             
-            <!-- FORM ACTION CONFIGURED FOR: xykzyyko -->
             <form id="portfolio-form" action="https://formspree.io/f/xykzyyko" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
                 <div class="flex flex-col">
-                    <label class="text-[10px] uppercase text-gray-500 mb-2 font-bold tracking-widest">Name</label>
+                    <label for="full-name" class="text-[10px] uppercase text-gray-500 mb-2 font-bold tracking-widest">Name</label>
                     <input type="text" name="name" id="full-name" required class="bg-[#1a1d23] border border-gray-800 p-4 focus:border-[#d4af37] outline-none text-white rounded-sm text-sm">
                 </div>
                 <div class="flex flex-col">
-                    <label class="text-[10px] uppercase text-gray-500 mb-2 font-bold tracking-widest">Email Address</label>
+                    <label for="email-address" class="text-[10px] uppercase text-gray-500 mb-2 font-bold tracking-widest">Email Address</label>
                     <input type="email" name="email" id="email-address" required class="bg-[#1a1d23] border border-gray-800 p-4 focus:border-[#d4af37] outline-none text-white rounded-sm text-sm">
                 </div>
                 <div class="md:col-span-2 flex flex-col">
-                    <label class="text-[10px] uppercase text-gray-500 mb-2 font-bold tracking-widest">Inquiry Type</label>
+                    <label for="inquiry-type" class="text-[10px] uppercase text-gray-500 mb-2 font-bold tracking-widest">Inquiry Type</label>
                     <select name="type" id="inquiry-type" class="bg-[#1a1d23] border border-gray-800 p-4 focus:border-[#d4af37] outline-none text-white rounded-sm text-sm appearance-none">
                         <option value="In-Person Coaching">In-Person Coaching</option>
                         <option value="Virtual Coaching">Virtual Coaching</option>
@@ -215,12 +325,10 @@
                     </select>
                 </div>
                 <div class="md:col-span-2 flex flex-col">
-                    <label class="text-[10px] uppercase text-gray-500 mb-2 font-bold tracking-widest">Message</label>
+                    <label for="message" class="text-[10px] uppercase text-gray-500 mb-2 font-bold tracking-widest">Message</label>
                     <textarea name="message" id="message" rows="4" placeholder="Describe your request or event details..." required class="bg-[#1a1d23] border border-gray-800 p-4 focus:border-[#d4af37] outline-none text-white rounded-sm text-sm"></textarea>
                 </div>
-                <!-- Anti-spam honey pot -->
                 <input type="text" name="_gotcha" style="display:none" />
-                
                 <button type="submit" class="md:col-span-2 bg-[#d4af37] text-black font-bold py-4 uppercase tracking-widest hover:bg-yellow-500 transition text-sm">Submit Request</button>
             </form>
         </div>
@@ -240,8 +348,121 @@
     </footer>
 
     <script>
-        // Automatically updates the year in the footer
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mouse Move Interaction for Background
+        const body = document.getElementById('body-pattern');
+        window.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX / window.innerWidth) * 20;
+            const moveY = (e.clientY / window.innerHeight) * 20;
+            body.style.backgroundPosition = `${moveX}px ${moveY}px`;
+        });
+
+        const USERNAME = 'nicholasbenedict2007';
+
+        // ONLY Live Bullet Game Tally Logic
+        async function fetchLiveBulletTally() {
+            try {
+                const response = await fetch(`https://api.chess.com/pub/player/${USERNAME}/stats`);
+                if (!response.ok) throw new Error('Stats fetch failed');
+                const data = await response.json();
+                
+                if (data.chess_bullet) {
+                    const stats = data.chess_bullet;
+                    const totalGames = stats.record.win + stats.record.loss + stats.record.draw;
+                    
+                    // Update ONLY the bullet game tally
+                    document.getElementById('stat-games-bullet').textContent = totalGames.toLocaleString() + "+";
+                }
+            } catch (err) {
+                console.warn('Could not fetch bullet tally:', err);
+            }
+        }
+
+        // Real-time Online Status Logic
+        async function fetchOnlineStatus() {
+            const dot = document.getElementById('nav-status-dot');
+            const text = document.getElementById('nav-status-text');
+            
+            try {
+                const response = await fetch(`https://api.chess.com/pub/player/${USERNAME}/is-online`);
+                if (!response.ok) throw new Error('Status fetch failed');
+                const data = await response.json();
+                
+                if (data.online) {
+                    dot.className = 'status-dot status-online';
+                    text.textContent = 'On the Board';
+                } else {
+                    dot.className = 'status-dot status-offline';
+                    text.textContent = 'Preparing for Battle';
+                }
+            } catch (err) {
+                dot.className = 'status-dot status-offline';
+                text.textContent = 'Status Unknown';
+            }
+        }
+
+        async function fetchRecentWins() {
+            const feedContainer = document.getElementById('game-feed');
+            
+            try {
+                const now = new Date();
+                const year = now.getFullYear();
+                const month = String(now.getMonth() + 1).padStart(2, '0');
+                
+                const response = await fetch(`https://api.chess.com/pub/player/${USERNAME}/games/${year}/${month}`);
+                if (!response.ok) throw new Error('Network issue');
+                
+                const data = await response.json();
+                
+                const wins = data.games.filter(game => {
+                    const isWhite = game.white.username.toLowerCase() === USERNAME.toLowerCase();
+                    const wonAsWhite = isWhite && game.white.result === 'win';
+                    const wonAsBlack = !isWhite && game.black.result === 'win';
+                    return wonAsWhite || wonAsBlack;
+                }).slice(-10).reverse();
+
+                if (wins.length === 0) {
+                    feedContainer.innerHTML = '<div class="text-gray-500 text-xs italic px-10">Awaiting this month\'s first victory... Check back shortly!</div>';
+                    return;
+                }
+
+                feedContainer.innerHTML = '';
+                
+                const fragment = document.createDocumentFragment();
+                wins.forEach(game => {
+                    const isWhite = game.white.username.toLowerCase() === USERNAME.toLowerCase();
+                    const opponent = isWhite ? game.black.username : game.white.username;
+                    
+                    const link = document.createElement('a');
+                    link.href = game.url;
+                    link.target = '_blank';
+                    link.className = 'game-link border border-gray-800 px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest transition flex items-center space-x-3 bg-[#0f1115]';
+                    link.innerHTML = `
+                        <span class="bg-[#d4af37] text-black px-2 py-0.5 rounded text-[8px]">WIN</span>
+                        <span class="text-white">vs ${opponent}</span>
+                        <i class="fas fa-external-link-alt text-[8px] opacity-40"></i>
+                    `;
+                    fragment.appendChild(link);
+                });
+
+                feedContainer.appendChild(fragment);
+
+                const clones = feedContainer.innerHTML;
+                feedContainer.innerHTML += clones;
+                feedContainer.innerHTML += clones;
+
+            } catch (err) {
+                console.warn('Game feed failed:', err);
+                feedContainer.innerHTML = '<div class="text-gray-700 text-xs italic">Archive sync in progress...</div>';
+            }
+        }
+
+        window.addEventListener('load', () => {
+            fetchRecentWins();
+            fetchLiveBulletTally();
+            fetchOnlineStatus();
+        });
     </script>
 
 </body>
