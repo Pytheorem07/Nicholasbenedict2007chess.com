@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon: Gold Chess Knight -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d4af37'><path d='M19,22H5V20H19V22M13,2V2L15.89,8.14L19,9.64L18.25,11.31L17.06,10.94L18,13C18,14.66 16.66,16 15,16H13V17H17V19H7V17H11V16H9L10,9H14L13,2Z'/></svg>">
+    
     <!-- Primary Meta Tags -->
     <title>Nicholasbenedict2007 | Elite Chess Bullet Specialist & Player</title>
     <meta name="title" content="Nicholasbenedict2007 | Elite Chess Bullet Specialist & Player">
@@ -48,6 +51,7 @@
             color: #e5e7eb;
             scroll-behavior: smooth;
             overflow-x: hidden;
+            position: relative;
         }
 
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
@@ -66,9 +70,23 @@
             transition: background-position 0.2s ease-out;
         }
 
+        /* Floating Chess Pieces Styles */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.15;
+        }
+
         .card-hover {
             transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(15, 17, 21, 0.6);
+            backdrop-filter: blur(5px);
         }
 
         .card-hover:hover {
@@ -124,6 +142,9 @@
     </style>
 </head>
 <body class="hero-pattern" id="body-pattern">
+
+    <!-- Floating Background Canvas -->
+    <canvas id="bg-canvas"></canvas>
 
     <!-- Navigation -->
     <nav class="fixed w-full z-50 nav-glass">
@@ -199,7 +220,7 @@
             <h2 class="text-center text-xl sm:text-2xl uppercase tracking-[0.4em] gold-text mb-12 sm:mb-16 font-bold">The Digital Record</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
                 <div class="text-center border-b border-gray-800 pb-8 sm:border-0 sm:pb-0">
-                    <div id="stat-games-bullet" class="text-4xl md:text-5xl font-bold gold-text mb-2">30,000+</div>
+                    <div id="stat-games-bullet" class="text-4xl md:text-5xl font-bold gold-text mb-2">30,000</div>
                     <div class="text-gray-500 uppercase tracking-widest text-xs">Total Bullet Games</div>
                 </div>
                 <div class="text-center border-b border-gray-800 pb-8 sm:border-0 sm:pb-0">
@@ -282,11 +303,12 @@
                 </div>
                 <div class="flex flex-col">
                     <label for="email-address" class="text-[10px] uppercase text-gray-500 mb-2 font-bold tracking-widest">Email Address</label>
-                    <input type="email" name="email" id="email-address" required class="bg-[#1a1d23] border border-gray-800 p-4 focus:border-[#d4af37] outline-none text-white rounded-sm text-sm">
+                    <!-- Using _replyto as standard for Formspree mapping -->
+                    <input type="email" name="_replyto" id="email-address" required class="bg-[#1a1d23] border border-gray-800 p-4 focus:border-[#d4af37] outline-none text-white rounded-sm text-sm">
                 </div>
                 <div class="md:col-span-2 flex flex-col">
                     <label for="inquiry-type" class="text-[10px] uppercase text-gray-500 mb-2 font-bold tracking-widest">Inquiry Type</label>
-                    <select name="type" id="inquiry-type" class="bg-[#1a1d23] border border-gray-800 p-4 focus:border-[#d4af37] outline-none text-white rounded-sm text-sm appearance-none">
+                    <select name="inquiry_type" id="inquiry-type" class="bg-[#1a1d23] border border-gray-800 p-4 focus:border-[#d4af37] outline-none text-white rounded-sm text-sm appearance-none">
                         <option value="In-Person Coaching">In-Person Coaching</option>
                         <option value="Virtual Coaching">Virtual Coaching</option>
                         <option value="Tournament Invitation">Tournament Invitation</option>
@@ -321,6 +343,45 @@
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
 
+        // Background Animation Logic
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let pieces = [];
+        const pieceIcons = ['♟', '♞', '♝', '♜', '♛', '♚'];
+
+        function initCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            pieces = [];
+            for (let i = 0; i < 15; i++) {
+                pieces.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 40 + 20,
+                    text: pieceIcons[Math.floor(Math.random() * pieceIcons.length)],
+                    speed: Math.random() * 0.5 + 0.2,
+                    opacity: Math.random() * 0.5 + 0.2
+                });
+            }
+        }
+
+        function drawBackground() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#d4af37";
+            pieces.forEach(p => {
+                ctx.globalAlpha = p.opacity;
+                ctx.font = `${p.size}px serif`;
+                ctx.fillText(p.text, p.x, p.y);
+                p.y -= p.speed;
+                if (p.y < -50) p.y = canvas.height + 50;
+            });
+            requestAnimationFrame(drawBackground);
+        }
+
+        window.addEventListener('resize', initCanvas);
+        initCanvas();
+        drawBackground();
+
         // Mouse Move Interaction for Background
         const body = document.getElementById('body-pattern');
         window.addEventListener('mousemove', (e) => {
@@ -343,7 +404,7 @@
                     const totalGames = stats.record.win + stats.record.loss + stats.record.draw;
                     
                     // Update ONLY the bullet game tally
-                    document.getElementById('stat-games-bullet').textContent = totalGames.toLocaleString() + "+";
+                    document.getElementById('stat-games-bullet').textContent = totalGames.toLocaleString();
                 }
             } catch (err) {
                 console.warn('Could not fetch bullet tally:', err);
